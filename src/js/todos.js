@@ -1,5 +1,8 @@
+import Storage from './helpers/localStorageAPI';
+
 const formEl = document.querySelector('.js-todos__form');
 const listEl = document.querySelector('ul');
+const STORAGE_KEY = 'todos';
 let items = [];
 
 const uptadeList = () => {
@@ -18,6 +21,7 @@ const uptadeList = () => {
   });
   listEl.innerHTML = '';
   listEl.append(...markup);
+  Storage.save(STORAGE_KEY, items);
 };
 
 const onClickSubmit = event => {
@@ -45,6 +49,22 @@ const onBtnClick = event => {
   items = items.filter(item => item.id !== todosId);
   uptadeList();
 };
+
+function populateTextarea() {
+  const savedItems = Storage.load(STORAGE_KEY);
+  console.log(savedItems);
+
+  if (!savedItems) {
+    return;
+  }
+
+  for (const item of savedItems) {
+    items.push(item);
+  }
+  uptadeList();
+}
+
+populateTextarea();
 
 formEl.addEventListener('submit', onClickSubmit);
 listEl.addEventListener('click', onBtnClick);
