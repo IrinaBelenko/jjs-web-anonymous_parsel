@@ -1,0 +1,61 @@
+/* clock styles */
+.clock.is-hidden {
+  opacity: 0;
+}
+
+.clock__items {
+  display: flex;
+  font-size: 48px;
+  max-width: max-content;
+  margin: 0 auto;
+
+  margin-bottom: 50px;
+}
+
+.clock__item {
+  position: relative;
+  min-width: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.clock__item::before {
+  content: attr(data-title);
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-size: 14px;
+}
+
+.clock__item:not(:nth-child(3))::after {
+  content: ':';
+  position: absolute;
+  right: -15px;
+}
+
+.buttons__wrapper {
+  max-width: max-content;
+  margin: 0 auto;
+}
+
+.show-clock__btn.is-hidden,
+.hide-clock__btn.is-hidden,
+.change-format__btn.is-hidden {
+  display: none;
+}
+
+.timezone.is-hidden {
+  opacity: 0;
+}
+
+button[type='button'].show-clock__btn {
+  background-color: #43b581;
+}
+
+button[type='button'].show-clock__btn:hover {
+  background-color: #3fb072;
+}
